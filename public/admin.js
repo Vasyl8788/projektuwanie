@@ -16,14 +16,31 @@ function toggleEditMode() {
   saveBtn.style.display = editMode ? 'block' : 'none';
 }
 
-adminLogin.addEventListener('click', (e) => {
+adminLogin.addEventListener('click', async (e) => {
   e.preventDefault();
-  toggleEditMode();
+  const password = prompt("Введіть пароль для доступу до редагування:");
+  if (!password) return;
+
+  try {
+    const response = await fetch('/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    });
+
+    if (response.ok) {
+      toggleEditMode();
+    } else {
+      alert("❌ Невірний пароль!");
+    }
+  } catch (err) {
+    alert("❌ Помилка авторизації!");
+    console.error(err);
+  }
 });
 
 // Збереження контенту на сервер
 saveBtn.addEventListener('click', async () => {
-  // Збираємо всі editable елементи у об’єкт з ключами по data-editable
   const content = {};
   editableElements.forEach(el => {
     content[el.getAttribute('data-editable')] = el.innerText.trim();
@@ -32,13 +49,13 @@ saveBtn.addEventListener('click', async () => {
   try {
     const response = await fetch('/save', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(content),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(content)
     });
 
     if (response.ok) {
       alert('✅ Збережено!');
-      toggleEditMode(); // Вимикаємо режим редагування після збереження
+      toggleEditMode();
     } else {
       alert('❌ Помилка при збереженні!');
     }
@@ -55,7 +72,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (!response.ok) throw new Error('Не вдалось завантажити контент');
     const data = await response.json();
 
-    // Заповнюємо всі editable елементи даними з файлу
     editableElements.forEach(el => {
       const key = el.getAttribute('data-editable');
       if (data[key]) {

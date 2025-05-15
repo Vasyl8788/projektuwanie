@@ -1,16 +1,25 @@
 {
-  "name": "kamil-site",
+  "name": "admin-panel-backend",
   "version": "1.0.0",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^4.21.2"
   },
-  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vasyl8788/Club.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vasyl8788/Club/issues"
+  },
+  "homepage": "https://github.com/Vasyl8788/Club#readme",
   "description": ""
 }
