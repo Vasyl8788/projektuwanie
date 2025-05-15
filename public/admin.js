@@ -28,7 +28,9 @@ adminLogin.addEventListener('click', async (e) => {
       body: JSON.stringify({ password })
     });
 
-    if (response.ok) {
+    const data = await response.json();
+
+    if (data.success) {
       toggleEditMode();
     } else {
       alert("❌ Невірний пароль!");
