@@ -1,0 +1,272 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Arial", "Raleway", sans-serif;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://img.freepik.com/premium-photo/png-youth-culture-design-border-transparent-background_53876-999359.jpg?semt=ais_hybrid&w=740');
+  background-size: cover;
+  background-position: center;
+  z-index: -3;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -2;
+}
+
+header {
+  background-color: black;
+  padding: 10px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.name {
+  font-family: "Fugaz One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 0;
+
+  
+}
+
+ .name-mobile {
+  font-family: "Fugaz One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: none;
+  
+
+}
+
+
+
+.nav {
+  display: flex;
+  justify-content: space-between; /* або center чи start, якщо потрібно */
+  align-items: center;
+ 
+}
+
+.logo-container .img {
+  height: 45px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #17baaa;
+}
+
+.nav-toggle {
+    font-size: 2rem;
+    color: white;
+    display: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle.active {
+    font-size: 3rem; /* Збільшуємо розмір при активації */
+}
+
+.nav-list.active {
+    display: flex; /* Показуємо список посилань при активації */
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-list li a {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-list li a:hover {
+  color: #17baaa;
+}
+
+.nav-list li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #17baaa;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s;
+}
+
+.nav-list li a:hover::after {
+  transform: scaleX(1);
+}
+
+#admin-login {
+    display: flex;
+    align-items: center;
+    background-color: #c9233a;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+    transition: all .25s ease;
+    font-size: 12px;
+    color: #17baaa;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+#admin-login::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #17baaa;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+#admin-login:hover {
+    background-color: red;
+}
+
+#admin-login:hover::after {
+    transform: scaleX(1);
+}
+
+
+
+main {
+  flex-grow: 1;
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 60px;
+}
+
+:target {
+  padding-top: 80px; /* Це дасть зсув, щоб секція була добре видно під фіксованою навігацією */
+  margin-top: -100px;  /* Відсуваємо секцію на 80px вверх, щоб вона починалась після меню */
+}
+
+h1, h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 3px #17baaa;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+
+.social-links a {
+  display: inline-block;
+  margin-right: 15px;
+  color: #17baaa;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: white;
+}
+
+.social-links i {
+  margin-right: 5px;
+}
+
+#kontakt i {
+  color: #17baaa;
+  margin-right: 8px;
+}
+
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #111;
+  font-size: 14px;
+  color: #aaa;
+}
+
+@media (max-width: 777px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-list {
+    border-radius: 14px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #000;
+    flex-direction: column;
+    width: 220px;
+    display: none;
+    padding: 20px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.7);
+  }
+
+  .nav-list.show {
+    display: flex;
+    
+  }
+  .name-mobile {
+    display: flex;
+    font-size: large;
+  }
+
+  .nav-list li {
+    margin-bottom: 15px;
+    
+  }
+
+  .name {
+  display: none;
+
+}
+}
+
+
+
+
