@@ -17,6 +17,17 @@ const __dirname = path.dirname(__filename);
 app.use(express.json());
 app.use(express.static('public'));
 
+app.post('/auth', (req, res) => {
+  const { password } = req.body;
+  console.log("👉 Введено пароль:", password);
+  console.log("🔐 Пароль із .env:", PASSWORD);
+
+  if (password === PASSWORD) {
+    return res.status(200).json({ success: true });
+  }
+  return res.status(401).json({ success: false, message: 'Invalid password' });
+});
+
 // Авторизація
 app.post('/auth', (req, res) => {
   const { password } = req.body;
