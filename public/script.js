@@ -1,7 +1,9 @@
+// Прокрутка до верху при кліку на заголовок
 document.getElementById("top-heading").addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
+// Меню-бургер
 const navToggle = document.getElementById("navToggle");
 const navList = document.getElementById("navList");
 const name = document.getElementById('name');
@@ -12,33 +14,23 @@ navToggle.addEventListener("click", () => {
   navToggle.classList.toggle("active");
 });
 
+// Завантаження контенту на сторінку при старті
+const API_URL = 'https://club-ccn9.onrender.com';
+const editableElements = document.querySelectorAll('[data-editable]');
 
-document.getElementById('saveBtn').addEventListener('click', async () => {
-  const password = localStorage.getItem('adminPassword'); // або введи з input
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await fetch(`${API_URL}/content`);
+    if (!response.ok) throw new Error('Не вдалось завантажити контент');
+    const data = await response.json();
 
-  if (!password) {
-    alert("❗ Спочатку увійди як адмін");
-    return;
-  }
-
-  const newContent = {
-    title: document.querySelector('#mainTitle').innerText,
-    description: document.querySelector('#mainDescription').innerText,
-    navigation: Array.from(document.querySelectorAll('.nav-item')).map(el => el.innerText)
-  };
-
-  const response = await fetch('/save', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': password
-    },
-    body: JSON.stringify(newContent),
-  });
-
-  if (response.ok) {
-    alert('✅ Збережено!');
-  } else {
-    alert('❌ Помилка при збереженні!');
+    editableElements.forEach(el => {
+      const key = el.getAttribute('data-editable');
+      if (data[key]) {
+        el.innerText = data[key];
+      }
+    });
+  } catch (err) {
+    console.warn('Could not load content:', err);
   }
 });
