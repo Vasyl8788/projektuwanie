@@ -63,8 +63,7 @@ saveBtn.addEventListener('click', async () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': password
-      },
+        'x-admin-password': password      },
       body: JSON.stringify(content)
     });
 
