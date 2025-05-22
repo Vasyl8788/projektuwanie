@@ -1,4 +1,5 @@
-// admin.js
+const API_URL = 'https://club-ccn9.onrender.com';
+
 const editableElements = document.querySelectorAll('[data-editable]');
 const saveBtn = document.getElementById('saveBtn');
 const adminLogin = document.getElementById('admin-login');
@@ -22,7 +23,7 @@ adminLogin.addEventListener('click', async (e) => {
   if (!password) return;
 
   try {
-    const response = await fetch('/auth', {
+    const response = await fetch(`${API_URL}/auth`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password })
@@ -49,7 +50,7 @@ saveBtn.addEventListener('click', async () => {
   });
 
   try {
-    const response = await fetch('/save', {
+    const response = await fetch(`${API_URL}/save`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(content)
@@ -70,7 +71,7 @@ saveBtn.addEventListener('click', async () => {
 // Підвантаження контенту при завантаженні сторінки
 window.addEventListener('DOMContentLoaded', async () => {
   try {
-    const response = await fetch('/content');
+    const response = await fetch(`${API_URL}/content`);
     if (!response.ok) throw new Error('Не вдалось завантажити контент');
     const data = await response.json();
 
@@ -100,6 +101,5 @@ document.getElementById("closeAdminInfo").addEventListener("click", hideAdminInf
 // Якщо потрібно одразу після входу:
 function enterAdminMode() {
   isAdmin = true;
-  showAdminInfo(); // показати опис функцій
-  // ... решта логіки адмін-режиму
+  showAdminInfo();
 }
