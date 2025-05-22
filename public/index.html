@@ -16,7 +16,13 @@
   <div class="background"></div>
   <div class="overlay"></div>
   
-
+        <!-- 🔄 Спортивна галерея -->
+          <div id="sportGallery" class="overflow-x-auto whitespace-nowrap p-2 bg-gray-100 border-b border-gray-300">
+            <img src="/uploads/sport1.jpg" class="inline-block h-32 mx-2 rounded-lg shadow-md" />
+            <img src="/uploads/sport2.jpg" class="inline-block h-32 mx-2 rounded-lg shadow-md" />
+            <img src="/uploads/sport3.jpg" class="inline-block h-32 mx-2 rounded-lg shadow-md" />
+            <!-- Можна додавати ще -->
+          </div>
 
   <header class="header">
             <nav class="nav">
@@ -107,11 +113,22 @@
                 </div>
            </section>
            
+
+
+           <!-- 📸 Галерея фото (редагована) -->
+          <section id="admin-gallery-section" class="p-4 hidden">
+            <h2 class="text-xl font-bold mb-2">Галерея (редагування)</h2>
+            <input type="file" id="upload-image" accept="image/*" class="mb-2" />
+            <button onclick="uploadImage()" class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded">
+              ➕ Завантажити фото
+            </button>
+            <div id="admin-images" class="mt-4 flex flex-wrap gap-4"></div>
+          </section>
         </main>
         <!-- Кнопка збереження для адміна -->
-<button id="saveBtn" style="display: none;" class="fixed bottom-4 right-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-xl z-50">
-  💾 Зберегти
-</button>
+        <button id="saveBtn" style="display: none;" class="fixed bottom-4 right-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-xl z-50">
+          💾 Зберегти
+        </button>
 
         <!-- Admin Info Modal -->
 <div id="adminInfoModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

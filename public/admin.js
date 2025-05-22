@@ -33,6 +33,8 @@ adminLogin.addEventListener('click', async (e) => {
 
     if (data.success) {
       toggleEditMode();
+      document.getElementById('admin-gallery-section').classList.remove('hidden');
+loadAdminGallery();
     } else {
       alert("❌ Невірний пароль!");
     }
@@ -102,4 +104,55 @@ document.getElementById("closeAdminInfo").addEventListener("click", hideAdminInf
 function enterAdminMode() {
   isAdmin = true;
   showAdminInfo();
+}
+
+
+
+function loadAdminGallery() {
+  fetch('https://club-ccn9.onrender.com/gallery')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('admin-images');
+      container.innerHTML = '';
+      data.forEach((img, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = "relative inline-block";
+
+        const imgEl = document.createElement('img');
+        imgEl.src = img.url;
+        imgEl.className = "h-32 rounded shadow";
+
+        const delBtn = document.createElement('button');
+        delBtn.textContent = '🗑';
+        delBtn.className = "absolute top-1 right-1 bg-red-600 text-white px-2 rounded";
+        delBtn.onclick = () => deleteImage(index);
+
+        wrapper.appendChild(imgEl);
+        wrapper.appendChild(delBtn);
+        container.appendChild(wrapper);
+      });
+    });
+}
+
+function uploadImage() {
+  const fileInput = document.getElementById('upload-image');
+  const file = fileInput.files[0];
+  const formData = new FormData();
+  formData.append('image', file);
+
+  fetch('https://club-ccn9.onrender.com/upload-image', {
+    method: 'POST',
+    body: formData
+  }).then(() => {
+    fileInput.value = '';
+    loadAdminGallery();
+  });
+}
+
+function deleteImage(index) {
+  fetch('https://club-ccn9.onrender.com/delete-image', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ index })
+  }).then(() => loadAdminGallery());
 }

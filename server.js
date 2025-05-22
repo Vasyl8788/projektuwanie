@@ -4,6 +4,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
+import multer from 'multer';
 
 dotenv.config();
 
@@ -53,4 +54,40 @@ app.post('/save', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
+
+const upload = multer({ dest: path.join(__dirname, 'uploads') });
+
+const galleryPath = path.join(__dirname, 'gallery.json');
+
+// Отримати список зображень
+app.get('/gallery', (req, res) => {
+  if (!fs.existsSync(galleryPath)) return res.json([]);
+  const data = JSON.parse(fs.readFileSync(galleryPath, 'utf-8'));
+  res.json(data);
+});
+
+// Завантажити зображення
+app.post('/upload-image', upload.single('image'), (req, res) => {
+  const fileUrl = `/uploads/${req.file.filename}`;
+  let images = [];
+
+  if (fs.existsSync(galleryPath)) {
+    images = JSON.parse(fs.readFileSync(galleryPath, 'utf-8'));
+  }
+
+  images.push({ url: fileUrl });
+  fs.writeFileSync(galleryPath, JSON.stringify(images, null, 2));
+  res.status(200).json({ success: true });
+});
+
+// Видалити зображення
+app.post('/delete-image', (req, res) => {
+  const { index } = req.body;
+  if (!fs.existsSync(galleryPath)) return res.status(404).json({ error: 'Gallery not found' });
+
+  const images = JSON.parse(fs.readFileSync(galleryPath, 'utf-8'));
+  const removed = images.splice(index, 1);
+  fs.writeFileSync(galleryPath, JSON.stringify(images, null, 2));
+  res.json({ success: true });
 });
