@@ -33,8 +33,6 @@ adminLogin.addEventListener('click', async (e) => {
 
     if (data.success) {
       toggleEditMode();
-      document.getElementById('admin-gallery-section').classList.remove('hidden');
-loadAdminGallery();
     } else {
       alert("❌ Невірний пароль!");
     }
