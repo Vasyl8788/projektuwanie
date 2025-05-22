@@ -220,6 +220,9 @@ p {
   margin-right: 8px;
 }
 
+.modal.hidden {
+  display: none;
+}
 
 footer {
   text-align: center;

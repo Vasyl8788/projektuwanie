@@ -84,3 +84,22 @@ window.addEventListener('DOMContentLoaded', async () => {
     console.warn('Could not load content:', err);
   }
 });
+
+function showAdminInfo() {
+  const modal = document.getElementById("adminInfoModal");
+  modal.classList.remove("hidden");
+}
+
+function hideAdminInfo() {
+  const modal = document.getElementById("adminInfoModal");
+  modal.classList.add("hidden");
+}
+
+document.getElementById("closeAdminInfo").addEventListener("click", hideAdminInfo);
+
+// Якщо потрібно одразу після входу:
+function enterAdminMode() {
+  isAdmin = true;
+  showAdminInfo(); // показати опис функцій
+  // ... решта логіки адмін-режиму
+}
