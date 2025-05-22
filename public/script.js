@@ -14,6 +14,13 @@ navToggle.addEventListener("click", () => {
 
 
 document.getElementById('saveBtn').addEventListener('click', async () => {
+  const password = localStorage.getItem('adminPassword'); // або введи з input
+
+  if (!password) {
+    alert("❗ Спочатку увійди як адмін");
+    return;
+  }
+
   const newContent = {
     title: document.querySelector('#mainTitle').innerText,
     description: document.querySelector('#mainDescription').innerText,
@@ -24,6 +31,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': password
     },
     body: JSON.stringify(newContent),
   });
