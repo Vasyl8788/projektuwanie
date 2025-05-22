@@ -1,4 +1,5 @@
 const API_URL = 'https://club-ccn9.onrender.com';
+
 const editableElements = document.querySelectorAll('[data-editable]');
 const saveBtn = document.getElementById('saveBtn');
 const adminLogin = document.getElementById('admin-login');
@@ -11,10 +12,10 @@ function toggleEditMode() {
     el.contentEditable = editMode ? "true" : "false";
     el.classList.toggle('editable', editMode);
   });
-
   saveBtn.style.display = editMode ? 'block' : 'none';
 }
 
+// Вхід адміністратора
 adminLogin.addEventListener('click', async (e) => {
   e.preventDefault();
   const password = prompt("Введіть пароль для доступу до редагування:");
@@ -32,9 +33,9 @@ adminLogin.addEventListener('click', async (e) => {
     if (data.success) {
       localStorage.setItem('adminPassword', password);
       toggleEditMode();
-      showAdminInfo();
       document.getElementById('admin-gallery-section').classList.remove('hidden');
       loadAdminGallery();
+      showAdminInfo();
     } else {
       alert("❌ Невірний пароль!");
     }
@@ -44,6 +45,7 @@ adminLogin.addEventListener('click', async (e) => {
   }
 });
 
+// Збереження контенту
 saveBtn.addEventListener('click', async () => {
   const password = localStorage.getItem('adminPassword');
   if (!password) {
@@ -72,26 +74,42 @@ saveBtn.addEventListener('click', async () => {
     } else {
       alert('❌ Помилка при збереженні!');
     }
-  } catch (err) { 
+  } catch (err) {
     alert('❌ Помилка при збереженні!');
     console.error(err);
   }
 });
 
-// Модальне вікно з інформацією
+// Підвантаження контенту при завантаженні сторінки
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await fetch(`${API_URL}/content`);
+    if (!response.ok) throw new Error('Не вдалось завантажити контент');
+    const data = await response.json();
+
+    editableElements.forEach(el => {
+      const key = el.getAttribute('data-editable');
+      if (data[key]) el.innerText = data[key];
+    });
+  } catch (err) {
+    console.warn('Could not load content:', err);
+  }
+});
+
+// Адмін-модалка
 function showAdminInfo() {
   const modal = document.getElementById("adminInfoModal");
-  modal.classList.remove("hidden");
+  modal?.classList.remove("hidden");
 }
 
 function hideAdminInfo() {
   const modal = document.getElementById("adminInfoModal");
-  modal.classList.add("hidden");
+  modal?.classList.add("hidden");
 }
 
-document.getElementById("closeAdminInfo").addEventListener("click", hideAdminInfo);
+document.getElementById("closeAdminInfo")?.addEventListener("click", hideAdminInfo);
 
-// Галерея (адмін)
+// Галерея
 function loadAdminGallery() {
   fetch(`${API_URL}/gallery`)
     .then(res => res.json())
@@ -121,6 +139,8 @@ function loadAdminGallery() {
 function uploadImage() {
   const fileInput = document.getElementById('upload-image');
   const file = fileInput.files[0];
+  if (!file) return;
+
   const formData = new FormData();
   formData.append('image', file);
 
