@@ -36,6 +36,12 @@ body {
   z-index: -2;
 }
 
+.line-foto {
+  width: 200px;
+
+
+}
+
 header {
   background-color: black;
   padding: 10px 30px;
