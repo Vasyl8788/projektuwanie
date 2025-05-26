@@ -11,6 +11,9 @@ import multer from 'multer';
 
 dotenv.config();
 
+const express = require('express');
+const path = require('path');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const PASSWORD = process.env.ADMIN_PASSWORD;
@@ -18,8 +21,6 @@ const PASSWORD = process.env.ADMIN_PASSWORD;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const express = require('express');
-const path = require('path');
 
 app.use(cors()); // Дозволити CORS — потрібно, якщо фронт і бек окремо
 app.use(express.json());
