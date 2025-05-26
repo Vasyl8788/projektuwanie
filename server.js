@@ -7,6 +7,8 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import multer from 'multer';
 
+
+
 dotenv.config();
 
 const app = express();
@@ -15,6 +17,9 @@ const PASSWORD = process.env.ADMIN_PASSWORD;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const express = require('express');
+const path = require('path');
 
 app.use(cors()); // Дозволити CORS — потрібно, якщо фронт і бек окремо
 app.use(express.json());
@@ -52,6 +57,21 @@ app.post('/save', (req, res) => {
     res.status(200).json({ message: 'Saved successfully' });
   });
 });
+
+
+
+// ДОЗВОЛИТИ ДОСТУП ДО uploads/
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Інші маршрути...
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Запуск
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Сервер запущено на порту ${port}`);
+});
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
