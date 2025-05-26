@@ -36,10 +36,20 @@ body {
   z-index: -2;
 }
 
-.line-foto {
-  width: 200px;
+.photo-line {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+    margin-bottom:  0px;
 
+}
 
+.photo-line img {
+  width: calc(100% / 7 ); /* 6 зображень з урахуванням відступу */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 header {
@@ -49,6 +59,18 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .photo-row img {
+    width: calc(100% / 3);
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-row img {
+    width: calc(100% / 2 );
+  }
 }
 
 .name {
@@ -68,7 +90,6 @@ header {
   
 
 }
-
 
 
 .nav {
@@ -176,6 +197,7 @@ header {
 
 
 main {
+  overflow: visible;
   flex-grow: 1;
   padding: 40px 20px;
   max-width: 1000px;
@@ -186,15 +208,31 @@ section {
   margin-bottom: 60px;
 }
 
+
+.section:last-of-type {
+   background-color: wheat;
+   height: 400px;
+
+
+
+}
+
 :target {
   padding-top: 80px; /* Це дасть зсув, щоб секція була добре видно під фіксованою навігацією */
   margin-top: -100px;  /* Відсуваємо секцію на 80px вверх, щоб вона починалась після меню */
 }
 
-h1, h2 {
+h1 {
+  font-size: 38px;
+  margin-bottom: 15px;
+  text-shadow: 3px 4px 5px #17baaa;
+
+}
+
+h2 {
   font-size: 32px;
   margin-bottom: 15px;
-  text-shadow: 1px 1px 3px #17baaa;
+  text-shadow: 3px 4px 3px #17baaa;
 }
 
 p {
@@ -203,14 +241,66 @@ p {
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
 
+[data-editable="tytuł6"] {
+  text-align: center;
+}
 
+
+.photo-gallery-wrapper {
+  overflow: visible;
+  position: relative;
+  width: 100vw;        /* галерея на ширину всього вікна */
+  margin-left: calc(-49vw + 49%); /* вирівнюємо по екрану, не по контейнеру */
+}
+
+.photo-gallery {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  overflow: visible;
+}
+
+.photo-gallery img {
+  
+  width: calc(100% / 4); /* 4 в ряд з урахуванням gap */
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+
+#kontakt {
+  padding: 0;
+  margin: 0;
+}
+
+.contact-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color:rgba(0, 0, 0, 0.445); /* чорний фон */
+  color: #fff;
+  padding: 20px 40px;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-bar .social-links,
+.contact-bar .contact-form {
+  flex: 1 1 45%;
+  min-width: 250px;
+}
+
+/* Соцмережі */
 .social-links a {
   display: inline-block;
-  margin-right: 15px;
+  margin: 4px 10px 4px 5px;
   color: #17baaa;
   font-weight: bold;
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 0.95rem;
 }
 
 .social-links a:hover {
@@ -219,13 +309,43 @@ p {
 
 .social-links i {
   margin-right: 5px;
-}
-
-#kontakt i {
   color: #17baaa;
-  margin-right: 8px;
 }
 
+/* Форма */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #17baaa;
+  border-radius: 4px;
+  background-color: #222;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.contact-form button {
+  align-self: flex-start;
+  background-color: #17baaa;
+  color: #111;
+  border: none;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contact-form button:hover {
+  background-color: #119788;
+}
 
 footer {
   text-align: center;
@@ -238,6 +358,10 @@ footer {
 @media (max-width: 777px) {
   .nav-toggle {
     display: block;
+  }
+
+  .photo-row img {
+    width: calc(100% / 3);
   }
 
   .nav-list {
