@@ -11,7 +11,6 @@ import multer from 'multer';
 
 dotenv.config();
 
-const express = require('express');
 const path = require('path');
 
 const app = express();
@@ -63,16 +62,6 @@ app.post('/save', (req, res) => {
 
 // ДОЗВОЛИТИ ДОСТУП ДО uploads/
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Інші маршрути...
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Запуск
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Сервер запущено на порту ${port}`);
-});
-
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
