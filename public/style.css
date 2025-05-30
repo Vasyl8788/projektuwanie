@@ -5,7 +5,6 @@
 }
 
 body {
-  scroll-behavior: smooth;
   font-family: "Arial", "Raleway", sans-serif;
   background-color: black;
   color: white;
@@ -130,6 +129,7 @@ header {
 }
 
 .nav-list li a {
+  scroll-behavior: smooth;
   color: white;
   font-weight: bold;
   font-size: 15px;
@@ -258,13 +258,13 @@ p {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 5px;
   overflow: visible;
 }
 
 .photo-gallery img {
   
-  width: calc(100% / 4); /* 4 в ряд з урахуванням gap */
+  width: calc(100% / 5); /* 4 в ряд з урахуванням gap */
   max-width: 100%;
   height: auto;
   border-radius: 8px;
