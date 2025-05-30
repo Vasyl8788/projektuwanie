@@ -5,6 +5,7 @@
 }
 
 body {
+  scroll-behavior: smooth;
   font-family: "Arial", "Raleway", sans-serif;
   background-color: black;
   color: white;
@@ -249,8 +250,8 @@ p {
 .photo-gallery-wrapper {
   overflow: visible;
   position: relative;
-  width: 100vw;        /* галерея на ширину всього вікна */
-  margin-left: calc(-49vw + 49%); /* вирівнюємо по екрану, не по контейнеру */
+  width: 100vw;        
+  margin-left: calc(-49vw + 49%); /
 }
 
 .photo-gallery {
