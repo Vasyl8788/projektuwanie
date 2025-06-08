@@ -39,18 +39,30 @@ body {
 
 .photo-line {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-    margin-bottom:  0px;
-
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 0px;
 }
 
 .photo-line img {
-  width: calc(100% / 7 ); /* 6 зображень з урахуванням відступу */
+  flex: 0 0 auto; /* не дозволяємо зменшуватись */
+  width: 250px; /* або інша фіксована ширина */
   height: auto;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  scroll-snap-align: start;
+}
+
+.photo-line::-webkit-scrollbar {
+  display: none;
+}
+
+.photo-line {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
 }
 
 header {
@@ -251,8 +263,9 @@ p {
 .photo-gallery-wrapper {
   overflow: visible;
   position: relative;
-  width: 100vw;        
-  margin-left: calc(-49vw + 49%); /
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
 .photo-gallery {
@@ -366,6 +379,10 @@ footer {
     width: calc(100% / 3);
   }
 
+  .photo-gallery img {
+    width: 33.33%;
+  }
+
   .nav-list {
     border-radius: 14px;
     position: absolute;
@@ -397,6 +414,16 @@ footer {
   display: none;
 
 }
+
+@media (max-width: 480px) {
+  .photo-gallery img {
+    width: 50%;
+  }
+}
+
+
+
+
 }
 
 
