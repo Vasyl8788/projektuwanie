@@ -1,4 +1,4 @@
-const API_URL = 'https://club-ccn9.onrender.com';
+const API_URL = 'https://projektuwanie.onrender.com';
 
 const editableElements = document.querySelectorAll('[data-editable]');
 const saveBtn = document.getElementById('saveBtn');
@@ -19,7 +19,7 @@ function toggleEditMode() {
 
 adminLogin.addEventListener('click', async (e) => {
   e.preventDefault();
-  const password = prompt("Введіть пароль для доступу до редагування:");
+  const password = prompt("Wprowadź hasło, aby uzyskać dostęp do edycji:");
   if (!password) return;
 
   try {
@@ -34,10 +34,10 @@ adminLogin.addEventListener('click', async (e) => {
     if (data.success) {
       toggleEditMode();
     } else {
-      alert("❌ Невірний пароль!");
+      alert("❌ Nieprawidłowe hasło!");
     }
   } catch (err) {
-    alert("❌ Помилка авторизації!");
+    alert("❌ Błąd autoryzacji!");
     console.error(err);
   }
 });
@@ -57,22 +57,22 @@ saveBtn.addEventListener('click', async () => {
     });
 
     if (response.ok) {
-      alert('✅ Збережено!');
+      alert('✅ Zachowane!');
       toggleEditMode();
     } else {
-      alert('❌ Помилка при збереженні!');
+      alert('❌ Błąd podczas zapisywania!');
     }
   } catch (err) {
-    alert('❌ Помилка при збереженні!');
+    alert('❌ Błąd podczas zapisywania!');
     console.error(err);
   }
 });
 
-// Підвантаження контенту при завантаженні сторінки
+// Ładowanie treści podczas ładowania strony
 window.addEventListener('DOMContentLoaded', async () => {
   try {
     const response = await fetch(`${API_URL}/content`);
-    if (!response.ok) throw new Error('Не вдалось завантажити контент');
+    if (!response.ok) throw new Error('Nie udało się pobrać treści');
     const data = await response.json();
 
     editableElements.forEach(el => {
