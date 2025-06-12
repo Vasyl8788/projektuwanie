@@ -1,9 +1,7 @@
-// --- Прокрутка догори при кліку по заголовку ---
 document.getElementById("top-heading").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// --- Мобільне меню ---
 const navToggle = document.getElementById("navToggle");
 const navList = document.getElementById("navList");
 const name = document.getElementById('name');

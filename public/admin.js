@@ -42,7 +42,6 @@ adminLogin.addEventListener('click', async (e) => {
   }
 });
 
-// Збереження контенту на сервер
 saveBtn.addEventListener('click', async () => {
   const content = {};
   editableElements.forEach(el => {
@@ -68,7 +67,6 @@ saveBtn.addEventListener('click', async () => {
   }
 });
 
-// Ładowanie treści podczas ładowania strony
 window.addEventListener('DOMContentLoaded', async () => {
   try {
     const response = await fetch(`${API_URL}/content`);
@@ -98,7 +96,6 @@ function hideAdminInfo() {
 
 document.getElementById("closeAdminInfo").addEventListener("click", hideAdminInfo);
 
-// Якщо потрібно одразу після входу:
 function enterAdminMode() {
   isAdmin = true;
   showAdminInfo();
