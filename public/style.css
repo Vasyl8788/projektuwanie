@@ -210,6 +210,16 @@ section {
   margin-bottom: 60px;
 }
 
+.Fan {
+  margin: 4px 10px 4px 5px;
+  color: #474dff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+
+
 
 .section:last-of-type {
    background-color: wheat;
@@ -219,9 +229,8 @@ section {
 
 }
 
-:target {
-  padding-top: 80px; /* Це дасть зсув, щоб секція була добре видно під фіксованою навігацією */
-  margin-top: -100px;  /* Відсуваємо секцію на 80px вверх, щоб вона починалась після меню */
+section {
+  scroll-margin-top: 130px;
 }
 
 h1 {
@@ -247,12 +256,37 @@ p {
   text-align: center;
 }
 
+.Sponsorzy img {
+  width: calc(33.33% - 10px); 
+  max-width: 100%;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s, width 0.3s;
+}
+
+.Sponsorzy {
+  
+display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  overflow: visible;
+}
+
+.Sponsorzy-g {
+  overflow: visible;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
 
 .photo-gallery-wrapper {
   overflow: visible;
   position: relative;
   width: 100%;
-  max-width: 1200px; /* обмеження по ширині */
   margin: 0 auto;
   padding: 0 10px;
 }
