@@ -21,7 +21,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://img.freepik.com/premium-photo/png-youth-culture-design-border-transparent-background_53876-999359.jpg?semt=ais_hybrid&w=740');
+  background-image: url('https://assets.zagranie.com/2025/06/Tbkndt1a-PRES-Torun-Motor-Lublin-Typy-i-kursy.-Mistrz-znow-pokaze-klase.webp');
   background-size: cover;
   background-position: center;
   z-index: -3;
@@ -74,18 +74,6 @@ header {
   z-index: 100;
 }
 
-@media (max-width: 768px) {
-  .photo-row img {
-    width: calc(100% / 3);
-  }
-}
-
-@media (max-width: 480px) {
-  .photo-row img {
-    width: calc(100% / 2 );
-  }
-}
-
 .name {
   font-family: "Fugaz One", sans-serif;
   font-weight: 400;
@@ -115,7 +103,7 @@ header {
 .logo-container .img {
   height: 45px;
   border-radius: 8px;
-  box-shadow: 0 0 10px #17baaa;
+  box-shadow: 0 0 10px #474dff;
 }
 
 .nav-toggle {
@@ -152,7 +140,7 @@ header {
 }
 
 .nav-list li a:hover {
-  color: #17baaa;
+  color: #474dff;
 }
 
 .nav-list li a::after {
@@ -162,7 +150,7 @@ header {
   bottom: -4px;
   width: 100%;
   height: 2px;
-  background-color: #17baaa;
+  background-color: #474dff;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s;
@@ -181,7 +169,7 @@ header {
     border-radius: 4px;
     transition: all .25s ease;
     font-size: 12px;
-    color: #17baaa;
+    color: #474dff;
     border: none;
     position: relative;
     overflow: hidden;
@@ -194,7 +182,7 @@ header {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #17baaa;
+    background-color: #474dff;
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 0.3s ease;
@@ -239,14 +227,14 @@ section {
 h1 {
   font-size: 38px;
   margin-bottom: 15px;
-  text-shadow: 3px 4px 5px #17baaa;
+  text-shadow: 3px 4px 5px #474dff;
 
 }
 
 h2 {
   font-size: 32px;
   margin-bottom: 15px;
-  text-shadow: 3px 4px 3px #17baaa;
+  text-shadow: 3px 4px 3px #474dff;
 }
 
 p {
@@ -264,25 +252,39 @@ p {
   overflow: visible;
   position: relative;
   width: 100%;
+  max-width: 1200px; /* обмеження по ширині */
   margin: 0 auto;
   padding: 0 10px;
 }
 
 .photo-gallery {
-  justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  justify-content: center;
+  gap: 10px;
   overflow: visible;
 }
 
 .photo-gallery img {
-  
-  width: calc(100% / 5); /* 4 в ряд з урахуванням gap */
+  width: calc(20% - 10px); /* базово — 5 в ряд */
   max-width: 100%;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+  transition: transform 0.3s, width 0.3s;
+}
+
+/* Робимо більші фото по центру */
+.photo-gallery img:nth-child(4n) {
+  width: calc(40% - 10px); /* робимо більшим кожне 4-е */
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.photo-gallery img:nth-child(2n) {
+  width: calc(40% - 10px); /* робимо більшим кожне 2-е */
+  transform: scale(1.05);
+  z-index: 1;
 }
 
 
@@ -312,7 +314,7 @@ p {
 .social-links a {
   display: inline-block;
   margin: 4px 10px 4px 5px;
-  color: #17baaa;
+  color: #474dff;
   font-weight: bold;
   text-decoration: none;
   font-size: 0.95rem;
@@ -324,7 +326,7 @@ p {
 
 .social-links i {
   margin-right: 5px;
-  color: #17baaa;
+  color: #474dff;
 }
 
 /* Форма */
@@ -338,7 +340,7 @@ p {
 .contact-form textarea {
   width: 100%;
   padding: 8px;
-  border: 1px solid #17baaa;
+  border: 1px solid #474dff;
   border-radius: 4px;
   background-color: #222;
   color: white;
@@ -347,7 +349,7 @@ p {
 
 .contact-form button {
   align-self: flex-start;
-  background-color: #17baaa;
+  background-color: #474dff;
   color: #111;
   border: none;
   padding: 6px 14px;
@@ -359,7 +361,7 @@ p {
 }
 
 .contact-form button:hover {
-  background-color: #119788;
+  background-color: #2836fa;
 }
 
 footer {
@@ -371,13 +373,15 @@ footer {
 }
 
 @media (max-width: 777px) {
+
+   .photo-row img {
+    width: calc(100% / 3);
+  }
+
   .nav-toggle {
     display: block;
   }
 
-  .photo-row img {
-    width: calc(100% / 3);
-  }
 
   .photo-gallery img {
     width: 33.33%;
@@ -419,7 +423,13 @@ footer {
   .photo-gallery img {
     width: 50%;
   }
+
+  .photo-row img {
+    width: calc(100% / 2 );
+  }
 }
+
+
 
 
 
