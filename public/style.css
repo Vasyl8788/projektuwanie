@@ -47,8 +47,8 @@ body {
 }
 
 .photo-line img {
-  flex: 0 0 auto; /* не дозволяємо зменшуватись */
-  width: 250px; /* або інша фіксована ширина */
+  flex: 0 0 auto; 
+  width: 250px; 
   height: auto;
   object-fit: cover;
   border-radius: 8px;
@@ -95,7 +95,7 @@ header {
 
 .nav {
   display: flex;
-  justify-content: space-between; /* або center чи start, якщо потрібно */
+  justify-content: space-between; 
   align-items: center;
  
 }
@@ -115,11 +115,11 @@ header {
 }
 
 .nav-toggle.active {
-    font-size: 3rem; /* Збільшуємо розмір при активації */
+    font-size: 3rem;
 }
 
 .nav-list.active {
-    display: flex; /* Показуємо список посилань при активації */
+    display: flex; 
 }
 
 .nav-list {
@@ -300,7 +300,7 @@ display: flex;
 }
 
 .photo-gallery img {
-  width: calc(20% - 10px); /* базово — 5 в ряд */
+  width: calc(20% - 10px); 
   max-width: 100%;
   height: auto;
   border-radius: 8px;
@@ -308,15 +308,14 @@ display: flex;
   transition: transform 0.3s, width 0.3s;
 }
 
-/* Робимо більші фото по центру */
 .photo-gallery img:nth-child(4n) {
-  width: calc(40% - 10px); /* робимо більшим кожне 4-е */
+  width: calc(40% - 10px); 
   transform: scale(1.05);
   z-index: 1;
 }
 
 .photo-gallery img:nth-child(2n) {
-  width: calc(40% - 10px); /* робимо більшим кожне 2-е */
+  width: calc(40% - 10px); 
   transform: scale(1.05);
   z-index: 1;
 }
@@ -331,7 +330,7 @@ display: flex;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color:rgba(0, 0, 0, 0.445); /* чорний фон */
+  background-color:rgba(0, 0, 0, 0.445); 
   color: #fff;
   padding: 20px 40px;
   align-items: center;
@@ -344,7 +343,6 @@ display: flex;
   min-width: 250px;
 }
 
-/* Соцмережі */
 .social-links a {
   display: inline-block;
   margin: 4px 10px 4px 5px;
@@ -363,7 +361,6 @@ display: flex;
   color: #474dff;
 }
 
-/* Форма */
 .contact-form form {
   display: flex;
   flex-direction: column;
